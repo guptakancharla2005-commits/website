@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't increase width */
+        }
+
+        .checkbox-group {
+            margin-top: 5px;
+        }
+        
+        .checkbox-group label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Styling for the Thank You Message */
+        #thank-you-message {
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+
+        .success-icon {
+            color: #28a745;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Registration Form -->
+    <form id="eventForm">
+        <h2>Event Registration</h2>
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" name="studentName" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="example@college.edu" required>
+        </div>
+
+        <!-- Gender Field -->
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <!-- Selected Events (Checkboxes) -->
+        <div class="form-group">
+            <label>Selected Events:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="events" value="hackathon" required> Hackathon</label>
+                <label><input type="checkbox" name="events" value="debate"> Debate</label>
+                <label><input type="checkbox" name="events" value="sports"> Sports</label>
+                <label><input type="checkbox" name="events" value="music"> Music</label>
+            </div>
+            <small style="color: #666;">(Select at least one)</small>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Thank You Message (Hidden initially) -->
+    <div id="thank-you-message">
+        <div class="success-icon">&#10004;</div>
+        <h3>Thank You!</h3>
+        <p>Your registration has been submitted successfully.</p>
+        <button onclick="location.reload()">Register Another</button>
+    </div>
+</div>
+
+<script>
+    // Select the form element
+    const form = document.getElementById('eventForm');
+    
+    // Listen for the submit event
+    form.addEventListener('submit', function(event) {
+        
+        // Check if the form is valid based on HTML5 constraints
+        if (form.checkValidity()) {
+            // Prevent the default form submission (which reloads the page)
+            event.preventDefault();
+
+            // Hide the form
+            form.style.display = 'none';
+
+            // Display the thank you message
+            document.getElementById('thank-you-message').style.display = 'block';
+        } else {
+            // If invalid, the browser will automatically show validation messages
+            // (e.g., "Please fill out this field")
+        }
+    });
+</script>
+
+</body>
+</html>
